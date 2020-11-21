@@ -1,26 +1,28 @@
 use structopt::StructOpt;
-use rand::prelude::*;
+use rand::Rng;
 
 #[derive(Debug, StructOpt)]
 struct Opt {
     #[structopt(long, short)]
-    max: u64,
+    max: usize,
     #[structopt(long, short)]
-    sample_size: u64,
+    sample_size: usize,
     #[structopt(default_value="1", long, short)]
-    digits: u8,
+    lead_digits: u8,
     #[structopt(default_value="1", long, short="n")]
-    min: u64
+    min: usize,
+    #[structopt(short, long)]
+    debug: bool,
 }
 
-fn generate_sample(max_value: u64, target_sample_size: u64, min_value: u64) {
-    let mut sample: Vec<u64> = Vec::new();
-    let target_chance:f64 = (1 as f64)/(max_value as f64 + 1 as f64 - min_value as f64);
-    let mut float_0_1:f64;
+fn generate_sample(max_value: usize, target_sample_size: usize, min_value: usize, debug: bool) {
+    let mut sample: Vec<usize> = Vec::new();
+    let division_denominator: usize = max_value + 1 - min_value;
+    let target_chance:f32 = (1.0)/(division_denominator as f32);
+    let mut float_0_1:f32;
     let mut rng=rand::thread_rng();
-    println!("{:?}", target_chance);
-    let mut pushed_values:u64=0;
-    let mut current_size:u64;
+    let mut pushed_values:usize=0;
+    let mut current_size:usize;
     for _ in 0..target_sample_size {
         current_size=pushed_values;
         while current_size==pushed_values {
@@ -34,10 +36,10 @@ fn generate_sample(max_value: u64, target_sample_size: u64, min_value: u64) {
             };
         };
     };
-    println!("{:?}", sample);
+    if debug { println!("{:?}", sample);}
 }
 
 fn main() {
     let args=Opt::from_args();
-    generate_sample(args.max, args.sample_size, args.min)
+    generate_sample(args.max, args.sample_size, args.min, args.debug)
 }
