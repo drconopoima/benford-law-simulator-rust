@@ -15,7 +15,7 @@ A simulator for leading digit data collections following Benford's Law. Built in
 You can assign a top of the range `--max` (`-m`), and a bottom of range `--min` (`-n`) for the simulations manually:
 
 ```sh
-car run --release -- --max 12345 --lead-digits 1 \
+cargo run --release -- --max 12345 --lead-digits 1 \
   --samplecount 1000 --min 1
 ```
 
@@ -86,5 +86,5 @@ Lead digits:
 You may generate output for the lead pair of digits as well, or any lead digit count with the option `--lead-digits (-l)`
 
 ```sh
-$ cargo run --release -- --lead-digits 2 -m 10000 -n 10 -s 1000
+cargo run --release -- --lead-digits 2 -m 10000 -n 10 -s 1000
 ```
