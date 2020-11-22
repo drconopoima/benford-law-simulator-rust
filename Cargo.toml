@@ -1,8 +1,11 @@
 [package]
 name = "benford-law-simulator-rust"
+description = "A simulator for leading digit data collections following Benford's Law. Built in Rust"
 version = "0.1.0"
 authors = ["Luis Jesus Diaz Manzo <luis@drconopoima.com>"]
 edition = "2018"
+license = "MIT"
+repository = "https://github.com/drconopoima/benford-law-simulator-rust"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
